@@ -1,14 +1,25 @@
-import Header from "./components/Layuot/Header/Header";
-import MainPage from "./pages/MainPage/MainPage";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 
-import "./App.scss";
+import { publicRoutes } from "./routes/routesList";
+import "./App.css";
 
 function App() {
+  // const [data, setData] = useState(null);
+
+  // useEffect(() => {
+  //   fetch("/home")
+  //     .then((res) => res.json())
+  //     .then((res) => setData(res.message));
+  // });
   return (
-    <>
-      <Header />
-      <MainPage />
-    </>
+    <Routes>
+      {publicRoutes.map(({ path, component: Component, exact }, idx) => {
+        return (
+          <Route key={idx} path={path} exact={exact} element={<Component />} />
+        );
+      })}
+    </Routes>
   );
 }
 
